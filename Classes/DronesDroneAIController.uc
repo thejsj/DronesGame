@@ -369,45 +369,46 @@ function bool SpecialTrace(vector StartTraceVectorOffset, vector EndTraceVectorO
 	TraceHit = Trace(HitLoc, HitNorm, EndTraceLoc, StartTraceLoc);
 	If(TraceHit != NONE)
 	{
-		//DrawDebugLine(StartTraceLoc, EndTraceLoc,255,0,0,true);
+		//sif(TraceHit.class.name != 
+		DrawDebugLine(StartTraceLoc, EndTraceLoc,255,0,0,true);
 		return TRUE;
 	}
-		//DrawDebugLine(StartTraceLoc, EndTraceLoc,0,255,0,true);
+		DrawDebugLine(StartTraceLoc, EndTraceLoc,0,255,0,true);
 	return FALSE;
 }
 
 function bool IsBrickSizedLocationOccupied(vector InLocation, rotator InRotation)
 {
-	if( SpecialTrace(vect(-19.95,-39.5,-19.95), vect(-19.95,39.5,-19.95), InLocation, InRotation) ) {
+	if( SpecialTrace(vect(-19.00,-39,-19.00), vect(-19.00,39,-19.00), InLocation, InRotation) ) {
 		return TRUE;
 	}
-	else if( SpecialTrace(vect(-19.95,-39.5,19.95), vect(-19.95,39.5,19.95), InLocation, InRotation) ) {
+	else if( SpecialTrace(vect(-19.00,-39,19.00), vect(-19.00,39,19.00), InLocation, InRotation) ) {
 		return TRUE;
 	}
-	else if( SpecialTrace(vect(19.95,-39.5,-19.95), vect(19.95,39.5,-19.95), InLocation, InRotation) ) {
+	else if( SpecialTrace(vect(19.00,-39,-19.00), vect(19.00,39,-19.00), InLocation, InRotation) ) {
 		return TRUE;
 	}
-	else if( SpecialTrace(vect(19.95,-39.5,19.95), vect(19.95,39.5,19.95), InLocation, InRotation) ) {
+	else if( SpecialTrace(vect(19.00,-39,19.00), vect(19.00,39,19.00), InLocation, InRotation) ) {
 		return TRUE;
 	}
 	
-	else if( SpecialTrace(vect(0,-39.5,-19.95), vect(0,39.5,-19.95), InLocation, InRotation) ) {
+	else if( SpecialTrace(vect(0,-39,-19.00), vect(0,39,-19.00), InLocation, InRotation) ) {
 		return TRUE;
 	}
-	else if( SpecialTrace(vect(0,-39.5,19.95), vect(0,39.5,19.95), InLocation, InRotation) ) {
+	else if( SpecialTrace(vect(0,-39,19.00), vect(0,39,19.00), InLocation, InRotation) ) {
 		return TRUE;
 	}
-	else if( SpecialTrace(vect(19.95,-39.5,0), vect(19.95,39.5,0), InLocation, InRotation) ) {
+	else if( SpecialTrace(vect(19.00,-39,0), vect(19.00,39,0), InLocation, InRotation) ) {
 		return TRUE;
 	}
-	else if( SpecialTrace(vect(-19.95,-39.5,0), vect(-19.95,39.5,0), InLocation, InRotation) ) {
+	else if( SpecialTrace(vect(-19.00,-39,0), vect(-19.00,39,0), InLocation, InRotation) ) {
 		return TRUE;
 	}
 
-	else if( SpecialTrace(vect(0,-39.5,-19.95), vect(0,-39.5,19.95), InLocation, InRotation) ) {
+	else if( SpecialTrace(vect(0,-39,-19.00), vect(0,-39,19.00), InLocation, InRotation) ) {
 		return TRUE;
 	}
-	else if( SpecialTrace(vect(0,39.5,19.95), vect(0,39.5,-19.95), InLocation, InRotation) ) {
+	else if( SpecialTrace(vect(0,39,19.00), vect(0,39,-19.00), InLocation, InRotation) ) {
 		return TRUE;
 	}
 	return FALSE;
@@ -551,7 +552,7 @@ function bool ShouldSpawnNewDrone()
 function InitializeRandomBlueprint()
 {
 	local int rand;
-	rand = 1;//RandRange(0,4);
+	rand = 5;//RandRange(0,4);
 	
 	switch( rand )
 	{
@@ -569,7 +570,19 @@ function InitializeRandomBlueprint()
 			break;
 		case 3:
 			`Log("Initializing random blueprint, using Rectangle");
+			StructureBlueprint = Spawn(class'DronesStructureBlueprintDiagonal');
+			break;
+		case 4:
+			`Log("Initializing random blueprint, using Rectangle");
 			StructureBlueprint = Spawn(class'DronesStructureBlueprintRectangle');
+			break;		
+		case 5:
+			`Log("Initializing random blueprint, using Rectangle");
+			StructureBlueprint = Spawn(class'DronesStructureBlueprintRealPyramid');
+			break;		
+		case 6:
+			`Log("Initializing random blueprint, using Rectangle");
+			StructureBlueprint = Spawn(class'DronesStructureBlueprintLibeskind');
 			break;
 	}
 	StructureBlueprint.StructureLocation.X = RandRange(-2500, 2500);
@@ -623,6 +636,6 @@ function InitializeChildBlueprint(DronesDrone ParentOne, DronesDrone ParentTwo, 
 //==========================DEFAULT PROPERTIES==========================================
 DefaultProperties
 {	
-	bRemovingBrick=FALSE
+	//bRemovingBrick=FALSE
 	bHoldingBrick=FALSE
 }

@@ -26,7 +26,7 @@ event PostBeginPlay()
 	super.PostBeginPlay();
 		
 	// spawn bricks
-	for( i=0; i<10000; i++)
+	for( i=0; i<1000; i++)
 	{
 		v.X = RandRange(-5000, 5000);
 		v.Y = RandRange(-5000, 5000);

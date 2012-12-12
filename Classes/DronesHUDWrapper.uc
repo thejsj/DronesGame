@@ -181,12 +181,23 @@ event PostRender()
 	}
 	
 		Canvas.SetDrawColor( 255, 0, 0, 255 );
-		Canvas.SetPos( 1360, 950 );
+		Canvas.SetPos( 100, 100 );
 		Canvas.DrawText( "Drone Speed: "$DronesGame(WorldInfo.Game).OverallDroneSpeed,,1.5,1.5 );
 		
 		Canvas.SetDrawColor( 255, 0, 0, 255 );
-		Canvas.SetPos( 1360, 990 );
+		Canvas.SetPos( 100, 150 );
 		Canvas.DrawText( "Number of Drones: "$DronesGame(WorldInfo.Game).Drones.Length,,1.5,1.5 );		
+		
+		Canvas.SetDrawColor( 0, 0, 0, 255 );
+		Canvas.SetPos( 100, 200 );
+		Canvas.DrawText( "Width: "$HUDWidth);		
+		
+		Canvas.SetDrawColor( 0, 0, 0, 255 );
+		Canvas.SetPos( 100, 250 );
+		Canvas.DrawText( "Width: "$HUDHeight);	
+
+	
+	
 	
       // Set the crosshair position to the center of the screen
       Canvas.SetPos( (HUDWidth/2 - CrosshairTexture.SizeX/32), (HUDHeight/2 - CrosshairTexture.SizeY/32)); 
