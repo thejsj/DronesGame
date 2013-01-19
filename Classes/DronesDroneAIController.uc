@@ -552,7 +552,7 @@ function bool ShouldSpawnNewDrone()
 function InitializeRandomBlueprint()
 {
 	local int rand;
-	rand = 5;//RandRange(0,4);
+	rand = 7;//RandRange(0,4);
 	
 	switch( rand )
 	{
@@ -584,7 +584,16 @@ function InitializeRandomBlueprint()
 			`Log("Initializing random blueprint, using Rectangle");
 			StructureBlueprint = Spawn(class'DronesStructureBlueprintLibeskind');
 			break;
+		case 7:
+			`Log("Initializing random blueprint, using Maze");
+			StructureBlueprint = Spawn(class'DronesStructureBlueprintMaze');
+			break;
+		case 8:
+			`Log("Initializing random blueprint, using DronesStructureBlueprintRotatedStack");
+			StructureBlueprint = Spawn(class'DronesStructureBlueprintRotatedStack');
+			break;
 	}
+
 	StructureBlueprint.StructureLocation.X = RandRange(-2500, 2500);
 	StructureBlueprint.StructureLocation.Y = RandRange(-2500, 2500);
 	
